@@ -4,6 +4,8 @@ Currently it just works for dsPIC33FJ128GP802 pic chip.
 
 A bootloader allows reprogramming of a microcontroller without the need for special hardware. This one I wrote from scratch. dsPICaBootable is the PC application while dspicboot is the program that live on the microcontroller.
 
+![](https://jontio.github.io/jpic_assets/dspicabootable.png)
+
 ## dsPICaBootable
 
 Cross platform PC/Mac/Linux application written in C++ Qt.
