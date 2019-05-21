@@ -23,6 +23,13 @@ int main(int argc, char *argv[])
         settings.setValue("lineEdit_filename",hexfilename);
     }
 
+    //if we are passed a filename then use this instead
+    if(args.size()==2)
+    {
+        QSettings settings;
+        settings.setValue("lineEdit_filename",args[1]);
+    }
+
     dspicabootable w;
     w.show();
 
