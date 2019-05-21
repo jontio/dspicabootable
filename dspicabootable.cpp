@@ -19,7 +19,7 @@ dspicabootable::dspicabootable(QWidget *parent) :
     bl_stage=0;
 
     console_tab_enabled=false;
-    if(ui->tabWidget->tabText(ui->tabWidget->currentIndex())=="Console")console_tab_enabled=true;
+    if(ui->tabWidget->tabText(ui->tabWidget->currentIndex()).remove("&")=="Console")console_tab_enabled=true;
 
     testingconnection=false;
 
@@ -73,7 +73,7 @@ dspicabootable::dspicabootable(QWidget *parent) :
     connect(ui->m_console,SIGNAL(getData(QByteArray)),this,SLOT(console_writeData(QByteArray)));
 
     loadhexfile();
-    if(ui->tabWidget->tabText(ui->tabWidget->currentIndex())=="Console")test_connection();
+    if(ui->tabWidget->tabText(ui->tabWidget->currentIndex()).remove("&")=="Console")test_connection();
 
     timeout2->start();
 }
@@ -726,7 +726,7 @@ void dspicabootable::combox_timeout()
     load_comboBox_port();
 
     //if we cant connect to device then try again
-    if((ui->tabWidget->tabText(ui->tabWidget->currentIndex())=="Upload")&&(!timeout->isActive())&&(!ui->pushButton_burn->isEnabled())&&(testingconnection))
+    if((ui->tabWidget->tabText(ui->tabWidget->currentIndex()).remove("&")=="Upload")&&(!timeout->isActive())&&(!ui->pushButton_burn->isEnabled())&&(testingconnection))
     {
         if(connectiontrys<3)
         {
@@ -735,7 +735,7 @@ void dspicabootable::combox_timeout()
     } else connectiontrys=0;
 
     //close port if done
-    if((ui->tabWidget->tabText(ui->tabWidget->currentIndex())=="Upload")&&(!timeout->isActive()))port->close();
+    if((ui->tabWidget->tabText(ui->tabWidget->currentIndex()).remove("&")=="Upload")&&(!timeout->isActive()))port->close();
 
 }
 
@@ -766,7 +766,7 @@ void dspicabootable::showStatusMessage(const QString &message)
 
 void dspicabootable::on_tabWidget_currentChanged(int index)
 {
-    if(ui->tabWidget->tabText(index)=="Console")
+    if(ui->tabWidget->tabText(index).remove("&")=="Console")
     {
         console_tab_enabled=true;
         ui->m_console->setFocus();
